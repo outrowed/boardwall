@@ -1,0 +1,704 @@
+.dark-button,
+.small-button {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    border-radius: 8px;
+    padding: 12px 18px;
+    background: #1d1d1f;
+    color: #fff;
+    font-size: 13px;
+    font-weight: 600;
+}
+.small-button {
+    padding: 10px 15px;
+    background: #ffffff;
+    color: #1d1d1f;
+    border: 1px solid #d5d8cc;
+}
+.icon-button {
+    padding: 8px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+}
+
+.eyebrow {
+    display: flex;
+    align-items: center;
+    gap: 9px;
+    font-size: 10px;
+    letter-spacing: 1.8px;
+    color: #78806d;
+    font-weight: 700;
+}
+.eyebrow span,
+.live-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: #809174;
+}
+
+.wall-toolbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 15px;
+    padding: 20px 0;
+    border-top: 1px solid #dedfd6;
+    margin-bottom: 15px;
+}
+.wall-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 30px 0;
+}
+.plot-section {
+    min-width: 0;
+}
+.avatar {
+    width: 26px;
+    height: 26px;
+    display: grid;
+    place-items: center;
+    border-radius: 50%;
+    font-size: 11px;
+}
+.you-tag {
+    font-size: 9px;
+    background: #e8f2ff;
+    color: #0066cc;
+    padding: 3px 6px;
+    border-radius: 4px;
+}
+.plot {
+    aspect-ratio: 1;
+    position: relative;
+    overflow: hidden;
+    background-color: #eeeeef;
+    background-image: radial-gradient(#c9cdc0 0.75px, transparent 0.75px);
+    background-size: 15px 15px;
+    border: 1px solid #f5f5f7;
+    container-type: inline-size;
+}
+.own-plot {
+    background-color: #ededf0;
+}
+.plot-label {
+    position: absolute;
+    bottom: 10px;
+    left: 0;
+    right: 0;
+    text-align: center;
+    font-size: 8px;
+    letter-spacing: 1.3px;
+    color: #8a977b;
+    pointer-events: none;
+}
+.wall-element {
+    position: absolute;
+    box-shadow: 0 5px 12px #38362218;
+    border-radius: 2px;
+}
+.wall-element.chosen {
+    outline: 2px dashed #0071e3;
+    outline-offset: 3px;
+}
+.note {
+    padding: 5%;
+    background-image: linear-gradient(110deg, #ffffff15, #00000005);
+}
+.note-text {
+    white-space: pre-wrap;
+    overflow: auto;
+    height: 100%;
+    font-family: "Kalam", cursive;
+    font-size: 3.4cqw;
+    line-height: 1.5;
+    overflow-wrap: anywhere;
+}
+.media-card {
+    padding: 2%;
+    display: flex;
+    flex-direction: column;
+}
+.media-card img {
+    width: 100%;
+    flex: 1;
+    min-height: 0;
+    object-fit: cover;
+}
+.media-card video {
+    height: 100%;
+    width: 100%;
+    object-fit: contain;
+}
+.caption {
+    font-family: "Kalam", cursive;
+    font-size: 2.9cqw;
+    padding-top: 4%;
+    text-align: center;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.link-content {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    justify-content: center;
+    height: 100%;
+    padding: 6%;
+    text-decoration: none;
+    color: #46513c;
+    overflow: hidden;
+    font-size: 3cqw;
+}
+.link-content span {
+    font-size: 2.2cqw;
+    opacity: 0.6;
+}
+.drag-handle,
+.rotate-handle,
+.resize-handle {
+    position: absolute;
+    background: #1d1d1f;
+    color: white;
+    border-radius: 5px;
+    padding: 7px;
+    touch-action: none;
+    z-index: 2;
+}
+.drag-handle {
+    top: 4px;
+    right: 4px;
+    cursor: grab;
+}
+.rotate-handle {
+    bottom: 4px;
+    left: 4px;
+    cursor: ew-resize;
+}
+.resize-handle {
+    bottom: 4px;
+    right: 4px;
+    cursor: nwse-resize;
+}
+.element-actions {
+    position: absolute;
+    right: 4px;
+    top: 4px;
+    display: flex;
+    background: #ffffff;
+    border-radius: 4px;
+    box-shadow: 0 2px 5px #0002;
+    font-size: 11px;
+}
+.element-actions button {
+    padding: 7px;
+}
+.empty-plot {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    color: #7e8a6d;
+}
+.empty-plot p {
+    font-family: Georgia, serif;
+    font-size: 24px;
+    margin: 14px 0 8px;
+}
+.empty-plot span {
+    font-size: 12px;
+}
+
+.editor-dock {
+    position: fixed;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    background: #fffdf9;
+    border: 1px solid #dce0d4;
+    padding: 8px 12px;
+    border-radius: 14px;
+    box-shadow: 0 8px 32px #2222;
+    z-index: 100;
+    white-space: nowrap;
+}
+.editor-dock button {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    font-size: 12px;
+    padding: 9px;
+    border-radius: 7px;
+}
+.editor-dock button:hover {
+    background: #eaf0e3;
+}
+.dock-divider {
+    height: 25px;
+    border-left: 1px solid #ddd;
+    margin: 0 8px;
+}
+.modal-backdrop {
+    position: fixed;
+    inset: 0;
+    background: transparent;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    z-index: 200;
+}
+.modal {
+    position: relative;
+    width: 520px;
+    max-width: 100%;
+    max-height: 90dvh;
+    overflow-y: auto;
+    background: #ffffff;
+    border-radius: 20px;
+    padding: 36px;
+    border: 1px solid #d2d2d7;
+    box-shadow: 0 16px 48px #00000016;
+}
+.modal-close {
+    position: absolute;
+    right: 20px;
+    top: 18px;
+    padding: 5px;
+}
+.modal h2 {
+    font-family: var(--font-sans);
+    font-size: 28px;
+    margin: 17px 0 15px;
+    line-height: 1.1;
+}
+.modal label {
+    display: block;
+    font-size: 12px;
+    font-weight: 600;
+    margin-bottom: 17px;
+}
+.modal input:not([type="file"]),
+.modal textarea {
+    display: block;
+    width: 100%;
+    margin-top: 7px;
+    padding: 12px;
+    border: 1px solid #d8dbd1;
+    border-radius: 8px;
+    background: #fff;
+    font-size: 14px;
+    font-weight: 400;
+}
+.modal textarea {
+    resize: vertical;
+}
+.type-button {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    padding: 9px;
+    border: 1px solid #dadcd1;
+    border-radius: 7px;
+    font-size: 11px;
+    text-transform: capitalize;
+}
+.type-button.active {
+    background: #e4eadb;
+    border-color: #93a67b;
+}
+.color-button {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+}
+.color-button.active {
+    outline: 2px solid #667a53;
+    outline-offset: 3px;
+}
+.upload-label {
+    background: #eff1e9;
+    border-radius: 8px;
+    padding: 12px;
+    color: #647353;
+}
+.upload-label input {
+    margin-top: 10px;
+    width: 100%;
+    font-weight: 400;
+}
+@media (min-width: 1500px) {
+    .wall-grid {
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+    }
+}
+@media (max-width: 1000px) {
+    .wall-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+@media (max-width: 640px) {
+    header {
+        flex-wrap: wrap;
+        gap: 14px;
+    }
+    .wall-grid {
+        grid-template-columns: 1fr;
+        gap: 28px;
+    }
+
+    .dark-button {
+        padding: 11px 12px;
+        font-size: 11px;
+    }
+
+    .eyebrow {
+        font-size: 8px;
+        letter-spacing: 1.2px;
+    }
+    .wall-toolbar {
+        align-items: flex-start;
+        font-size: 13px;
+    }
+
+    .modal {
+        padding: 30px 22px;
+    }
+    .modal h2 {
+        font-size: 26px;
+    }
+    .dock-divider {
+        display: none;
+    }
+    .editor-dock {
+        bottom: 12px;
+    }
+}
+
+/* Bounded content flexes with the element rather than intrinsic media dimensions. */
+.plot {
+    isolation: isolate;
+}
+.wall-element {
+    box-sizing: border-box;
+}
+.note {
+    padding: 0;
+}
+.note-container {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    border-radius: 3px;
+}
+.note-window-bar {
+    height: 24px;
+    flex: 0 0 24px;
+    background: #0000000c;
+    border-bottom: 1px solid #00000008;
+    cursor: grab;
+    touch-action: none;
+    display: flex;
+    align-items: center;
+    padding: 0 10px;
+}
+.window-dots {
+    display: flex;
+    gap: 4px;
+}
+.window-dots span {
+    width: 4px;
+    height: 4px;
+    border-radius: 50%;
+    background: #00000025;
+}
+.note-body {
+    flex: 1;
+    min-height: 0;
+    min-width: 0;
+    padding: 12px;
+    overflow: hidden;
+}
+.note-textarea,
+.note-text {
+    box-sizing: border-box;
+    display: block;
+    width: 100%;
+    height: 100%;
+    min-width: 0;
+    min-height: 0;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    border-radius: 0;
+    background: transparent;
+    font-family: "Kalam", cursive;
+    font-size: 3.4cqw;
+    line-height: 1.5;
+    overflow: auto;
+    overflow-wrap: anywhere;
+    white-space: pre-wrap;
+    resize: none;
+}
+.note-textarea:focus-visible {
+    outline: none;
+}
+.media-wrapper,
+.link-wrapper {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
+    min-height: 0;
+    min-width: 0;
+    overflow: hidden;
+}
+.media-wrapper img {
+    flex: 1 1 0;
+    height: 0;
+    width: 100%;
+    min-height: 0;
+    object-fit: cover;
+}
+.media-wrapper video {
+    flex: 1 1 0;
+    height: 0;
+    min-height: 0;
+}
+.caption {
+    flex: 0 0 auto;
+    max-height: 25%;
+    padding-top: 4px;
+}
+.media-drag-strip {
+    flex: 0 0 18px;
+    font-size: 8px;
+    color: #88907e;
+    cursor: grab;
+    touch-action: none;
+}
+.link-wrapper .link-content {
+    flex: 1;
+    min-height: 0;
+}
+.element-actions {
+    z-index: 3;
+}
+.note .element-actions {
+    right: 4px;
+    top: 4px;
+    background: transparent;
+    box-shadow: none;
+}
+.plot-add-corner {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 82px;
+    height: 82px;
+    z-index: 10000;
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-end;
+    padding: 12px;
+}
+.plot-add-button {
+    display: grid;
+    place-items: center;
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+    background: #ffffff;
+    color: #48613a;
+    border: 1px solid #9aaa8270;
+    box-shadow: 0 2px 8px #26381b10;
+    opacity: 0.22;
+    transform: scale(0.8);
+    transition:
+        opacity 0.18s,
+        transform 0.18s;
+}
+.plot-add-corner:hover .plot-add-button,
+.plot-add-corner:focus-within .plot-add-button,
+.plot-add-button.open {
+    opacity: 1;
+    transform: scale(1);
+}
+.plot-add-dropdown {
+    position: absolute;
+    right: 12px;
+    top: 54px;
+    width: 140px;
+    padding: 6px;
+    border: 1px solid #d2d2d7;
+    border-radius: 12px;
+    background: #ffffff;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+}
+.plot-add-dropdown button {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    width: 100%;
+    padding: 8px 10px;
+    border-radius: 7px;
+    font-size: 13px;
+    color: #1d1d1f;
+    text-align: left;
+    background: transparent;
+}
+.plot-add-dropdown button:hover {
+    background: #f5f5f7;
+}
+@media (min-width: 641px) {
+    .editor-dock {
+        display: none;
+    }
+}
+@media (max-width: 640px) {
+    .plot-add-corner {
+        display: none;
+    }
+    .editor-dock {
+        display: flex;
+    }
+    .editor-dock > span {
+        display: none;
+    }
+}
+
+.plot-overlay-modal {
+    position: absolute;
+    inset: 0;
+    z-index: 10001;
+    background: rgba(0, 0, 0, 0.2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+}
+.plot-overlay-card {
+    background: #ffffff;
+    border: 1px solid #d2d2d7;
+    border-radius: 14px;
+    padding: 20px;
+    box-shadow: 0 12px 32px rgba(0, 0, 0, 0.16);
+    width: 100%;
+    max-width: 280px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    text-align: center;
+}
+.plot-overlay-card h4 {
+    font-size: 15px;
+    font-weight: 600;
+    margin: 0;
+    color: #1d1d1f;
+}
+.plot-overlay-card p {
+    font-size: 13px;
+    color: #6e6e73;
+    margin: 0;
+    line-height: 1.4;
+}
+.plot-overlay-actions {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-top: 6px;
+}
+.global-loading-indicator {
+    position: fixed;
+    top: 16px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 99999;
+    background: rgba(48, 60, 47, 0.92);
+    color: #fff;
+    padding: 8px 18px;
+    border-radius: 9999px;
+    font-size: 12px;
+    font-weight: 500;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    pointer-events: none;
+}
+
+.plot-loading {
+    position: absolute;
+    inset: 0;
+    z-index: 20000;
+    display: grid;
+    place-items: center;
+    background: #f5f5f7e8;
+    color: #1d1d1f;
+    font-size: 14px;
+    cursor: wait;
+}
+
+.context-menu {
+    position: absolute;
+    z-index: 20001;
+    width: 176px;
+    padding: 10px;
+    border: 1px solid #d5ddcc;
+    border-radius: 10px;
+    background: #ffffff;
+    box-shadow: 0 6px 24px #26381b26;
+    font-size: 12px;
+}
+.context-menu button {
+    text-align: left;
+    width: 100%;
+    padding: 8px;
+    border-radius: 6px;
+}
+.context-menu button:hover {
+    background: #eaf0e3;
+}
+
+/* Canvas-specific controls retain compact geometry while sharing Button behavior. */
+.element-actions button,
+.rotate-handle,
+.resize-handle {
+    min-height: 28px;
+    padding: 6px;
+    border-radius: 6px;
+}
+.modal h2 {
+    font-weight: 600;
+    letter-spacing: -0.6px;
+}
+.modal input:not([type="file"]),
+.modal textarea {
+    border-color: #d2d2d7;
+    border-radius: 10px;
+    min-height: 44px;
+}
+.wall-toolbar {
+    border-top: 0;
+    padding: 8px 0 20px;
+}
+.context-menu {
+    background: #fff;
+    border-color: #d2d2d7;
+    box-shadow: 0 8px 28px #00000018;
+}
+.context-menu button {
+    border-radius: 7px;
+}
