@@ -5,6 +5,7 @@ import { eq, and, gt, lt, sql as dSql } from "drizzle-orm";
 import { db } from "./database";
 import { users, sessions, elements } from "./schema";
 import { validateElement } from "./validation";
+import { syncAdminAccounts, isConfiguredAdmin, getAdminUsernames } from "./admin";
 import type { WallElement } from "../src/types";
 
 interface SessionUser {
@@ -25,7 +26,8 @@ const allowedOrigins = new Set([
     "http://localhost:5178",
 ]);
 
-const adminNames = new Set(["taruna1"]);
+// Initialize and sync admin accounts from accounts.json
+await syncAdminAccounts();
 
 const app = Fastify({
     logger: false,
@@ -60,7 +62,7 @@ app.addHook("onRequest", async (req: FastifyRequest, reply: FastifyReply) => {
             req.sessionUser = {
                 id: found[0].id,
                 username: found[0].username,
-                isAdmin: adminNames.has(found[0].username.toLowerCase()),
+                isAdmin: isConfiguredAdmin(found[0].username),
             };
         }
     }
@@ -136,6 +138,10 @@ app.post<{ Body: {
         });
     }
 
+    if (isConfiguredAdmin(username)) {
+        return reply.status(403).send({ error: "Administrator accounts cannot be registered." });
+    }
+
     const existing = await db
         .select()
         .from(users)
@@ -181,7 +187,7 @@ app.post<{ Body: {
         user: {
             id: newUser.id,
             username,
-            isAdmin: adminNames.has(username.toLowerCase()),
+            isAdmin: isConfiguredAdmin(username),
         },
     };
 });
@@ -233,7 +239,7 @@ app.post<{ Body: {
         user: {
             id: account.id,
             username,
-            isAdmin: adminNames.has(username.toLowerCase()),
+            isAdmin: isConfiguredAdmin(username),
         },
     };
 });
@@ -277,10 +283,11 @@ app.get("/api/admin/users", async (req, reply) => {
         .groupBy(users.id, users.username, users.plotDeleted)
         .orderBy(users.id);
 
+    const adminUsernames = getAdminUsernames();
     const result = rows.map(account => ({
         id: account.id,
         username: account.username,
-        isAdmin: adminNames.has(account.username.toLowerCase()),
+        isAdmin: adminUsernames.has(account.username.toLowerCase()),
         plotDeleted: Boolean(account.plotDeleted),
         elements: account.elementsCount,
         sessions: account.sessionsCount,
