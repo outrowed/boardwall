@@ -28,6 +28,7 @@
         "react": "^19.1.0",
         "react-dom": "^19.1.0",
         "tailwindcss": "^4.1.0",
+        "tsx": "^4.23.15",
         "vite": "^7.1.0"
     },
     "devDependencies": {
@@ -41,7 +42,6 @@
         "embedded-postgres": "18.4.0-beta.17",
         "eslint": "^10.12.0",
         "jiti": "^2.7.0",
-        "tsx": "^4.23.15",
         "typescript": "^5.9.0",
         "typescript-eslint": "^8.71.0"
     }
