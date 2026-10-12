@@ -13,7 +13,7 @@ RUN corepack enable && corepack prepare pnpm@12.5.1 --activate
 COPY package.json pnpm-lock.yaml pnpm-workspace.yaml ./
 RUN pnpm install --prod --frozen-lockfile
 COPY server ./server
-COPY src/types.ts ./src/types.ts
+COPY src/types.ts src/geometry.ts ./src/
 COPY drizzle.config.ts tsconfig.json ./
 COPY --from=build /app/dist ./dist
 USER node
