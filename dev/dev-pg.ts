@@ -7,7 +7,7 @@ const DB_DIR = resolve("data/postgres");
 const LOG_FILE = resolve("data/postgres/server.log");
 const PORT = Number(process.env.PGPORT || 5432);
 const USER = process.env.PGUSER || "postgres";
-const PASSWORD = *** || "password";
+const PASSWORD = process.env.PGPASSWORD || "password";
 const DATABASE = process.env.PGDATABASE || "boardwall";
 
 // Path to pg_ctl and initdb inside @embedded-postgres binary package
@@ -61,7 +61,7 @@ if (action === "start") {
         host: "127.0.0.1",
         port: PORT,
         user: USER,
-        password: ***,
+        password: PASSWORD,
         database: "postgres",
     });
 
@@ -72,7 +72,7 @@ if (action === "start") {
     }
     await sql.end();
 
-    console.log(`Ready! DATABASE_URL=postgres://${USER}:***}@127.0.0.1:${PORT}/${DATABASE}`);
+    console.log(`Ready! DATABASE_URL=postgres://${USER}:${PASSWORD}@127.0.0.1:${PORT}/${DATABASE}`);
 } else if (action === "stop") {
     console.log("Shutting down PostgreSQL daemon...");
     const status = spawnSync(PG_CTL, ["status", "-D", DB_DIR], {

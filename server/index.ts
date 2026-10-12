@@ -1,5 +1,8 @@
+import { existsSync } from "node:fs";
+import { resolve } from "node:path";
 import Fastify, { type FastifyError, type FastifyReply, type FastifyRequest } from "fastify";
 import cookie from "@fastify/cookie";
+import staticFiles from "@fastify/static";
 import { randomBytes, scryptSync, timingSafeEqual } from "node:crypto";
 import { eq, and, gt, lt, sql as dSql } from "drizzle-orm";
 import { db } from "./database";
@@ -24,6 +27,8 @@ const allowedOrigins = new Set([
     "https://celery.tailf0d1c0.ts.net:8448",
     "http://127.0.0.1:5178",
     "http://localhost:5178",
+    "https://boardwall.taruna.me",
+    "http://boardwall.taruna.me",
 ]);
 
 // Initialize and sync admin accounts from accounts.json
@@ -480,8 +485,25 @@ app.delete<{ Params: { id: string } }>("/api/elements/:id", async (req, reply) =
 });
 
 const port = Number(process.env.PORT || 3018);
+const host = process.env.HOST || "127.0.0.1";
+const distPath = resolve("dist");
+
+if (existsSync(distPath)) {
+    await app.register(staticFiles, {
+        root: distPath,
+        prefix: "/",
+    });
+    app.setNotFoundHandler(async (req, reply) => {
+        if (req.raw.url?.startsWith("/api/")) {
+            return reply.status(404).send({ error: "Not found" });
+        }
+
+        return reply.sendFile("index.html");
+    });
+}
+
 await app.listen({
     port,
-    host: "127.0.0.1",
+    host,
 });
-console.log(`Boardwall API listening on ${port}`);
+console.log(`Boardwall API listening on ${host}:${port}`);
