@@ -18,4 +18,4 @@ COPY drizzle.config.ts tsconfig.json ./
 COPY --from=build /app/dist ./dist
 USER node
 EXPOSE 3018
-CMD ["node", "node_modules/.bin/tsx", "server/index.ts"]
+CMD ["node", "node_modules/tsx/dist/cli.mjs", "server/index.ts"]
